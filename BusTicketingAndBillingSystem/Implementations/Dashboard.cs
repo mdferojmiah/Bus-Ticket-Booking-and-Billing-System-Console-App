@@ -9,34 +9,47 @@ namespace BusTicketingAndBillingSystem.Implementations
 
         public void Show()
         {
-            Console.WriteLine("Bus Ticket Booking & Billing System");
-            Console.WriteLine("-----------------------------------");
-
+            Console.Clear();
             while (true)
             {
-                Console.WriteLine("1. Create User");
-                Console.WriteLine("2. Show All Users");
-                Console.WriteLine("0. Exit\n");
-                Console.Write("> ");
+                PrintMenu();
                 var userInput = Console.ReadLine();
 
                 switch (userInput)
                 {
                     case "0":
+                        //exit
                         Console.Clear();
                         return;
                     case "1":
+                        //create user
                         Console.Clear();
                         userManager.CreateUser();
                         BackToMainMenuOption();
                         break;
                     case "2":
+                        //show all users
                         Console.Clear();
                         userManager.ShowAllUser();
                         BackToMainMenuOption();
                         break;
+                    default:
+                        //invalid input
+                        Console.Clear();
+                        Console.WriteLine("Invalid Command!\n");
+                        break;
                 }
             }
+        }
+
+        private void PrintMenu()
+        {
+            Console.WriteLine("Bus Ticket Booking & Billing System");
+            Console.WriteLine("-----------------------------------");
+            Console.WriteLine("1. Create User");
+            Console.WriteLine("2. Show All Users");
+            Console.WriteLine("0. Exit\n");
+            Console.Write("> ");
         }
 
         private void BackToMainMenuOption()
@@ -46,6 +59,7 @@ namespace BusTicketingAndBillingSystem.Implementations
                 Console.WriteLine("\n0. Go back to Main Menu");
                 Console.Write("> ");
                 string input = Console.ReadLine() ?? string.Empty;
+                
                 if(input == "0")
                 {
                     Console.Clear();
