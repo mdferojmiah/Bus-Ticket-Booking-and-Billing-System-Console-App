@@ -5,11 +5,13 @@ namespace BusTicketingAndBillingSystem.Implementations
 {
     public class Dashboard : IDashboardManager
     {
-        private  readonly IUserManager _userManager;
+        private readonly IUserManager _userManager;
+        private readonly IBusManager _busManager;
 
-        public Dashboard(IUserManager userManager)
+        public Dashboard(IUserManager userManager, IBusManager busManager)
         {
             _userManager = userManager;
+            _busManager = busManager;
         }
 
         public void Show()
@@ -38,6 +40,18 @@ namespace BusTicketingAndBillingSystem.Implementations
                         _userManager.ShowAllUser();
                         BackToMainMenuOption();
                         break;
+                    case "3":
+                        //create bus
+                        Console.Clear();
+                        _busManager.CreateBus();
+                        BackToMainMenuOption();
+                        break;
+                    case "4":
+                        //show all buses
+                        Console.Clear();
+                        _busManager.ShowAllBus();
+                        BackToMainMenuOption();
+                        break;
                     default:
                         //invalid input
                         Console.Clear();
@@ -53,6 +67,8 @@ namespace BusTicketingAndBillingSystem.Implementations
             Console.WriteLine("-----------------------------------");
             Console.WriteLine("1. Create User");
             Console.WriteLine("2. Show All Users");
+            Console.WriteLine("3. Create Bus");
+            Console.WriteLine("4. Show All Buses");
             Console.WriteLine("0. Exit\n");
             Console.Write("> ");
         }
