@@ -5,7 +5,12 @@ namespace BusTicketingAndBillingSystem.Implementations
 {
     public class Dashboard : IDashboardManager
     {
-        private IUserManager userManager = new UserManager();
+        private  readonly IUserManager _userManager;
+
+        public Dashboard(IUserManager userManager)
+        {
+            _userManager = userManager;
+        }
 
         public void Show()
         {
@@ -24,13 +29,13 @@ namespace BusTicketingAndBillingSystem.Implementations
                     case "1":
                         //create user
                         Console.Clear();
-                        userManager.CreateUser();
+                        _userManager.CreateUser();
                         BackToMainMenuOption();
                         break;
                     case "2":
                         //show all users
                         Console.Clear();
-                        userManager.ShowAllUser();
+                        _userManager.ShowAllUser();
                         BackToMainMenuOption();
                         break;
                     default:
