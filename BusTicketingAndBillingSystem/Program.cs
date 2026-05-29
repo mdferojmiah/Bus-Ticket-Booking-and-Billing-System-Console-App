@@ -9,8 +9,10 @@ namespace BusTicketingAndBillingSystem
     {
         public static void Main(string[] args)
         {
+            IUserManager userManager = new UserManager();
+            IBusManager busManager = new BusManager();
             //initiating dashboard
-            IDashboardManager dashboard = new Dashboard();
+            IDashboardManager dashboard = new Dashboard(userManager, busManager);
 
             //showing the dashboard
             dashboard.Show();
