@@ -1,25 +1,19 @@
-﻿namespace BusTicketingAndBillingSystem
+﻿using System.Security.Cryptography.X509Certificates;
+using BusTicketingAndBillingSystem.Implementations;
+using BusTicketingAndBillingSystem.Interfaces;
+using BusTicketingAndBillingSystem.Models;
+
+namespace BusTicketingAndBillingSystem
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Bus Ticket Booking & Billing System");
-            Console.WriteLine("-----------------------------------");
+            //initiating dashboard
+            IDashboardManager dashboard = new Dashboard();
 
-            while (true)
-            {
-                Console.WriteLine("0. Exit\n");
-                Console.Write("> ");
-                var userInput = Console.ReadLine();
-
-                switch (userInput)
-                {
-                    case "0":
-                        Console.Clear();
-                        return;
-                }
-            }
+            //showing the dashboard
+            dashboard.Show();
         }
     }
 }
