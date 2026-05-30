@@ -6,31 +6,16 @@ namespace BusTicketingAndBillingSystem.Implementations
     public class UserManager : IUserManager
     {
         private readonly List<User> _users;
+        private readonly IInputManager _inputManager;
 
-        public UserManager()
+        public UserManager(IInputManager inputManager)
         {
             _users = new List<User>();
+            _inputManager = inputManager;
         }
         public void CreateUser()
         {
-            //taking input
-            Console.Write("Enter Name: ");
-            string name = Console.ReadLine() ?? string.Empty;
-
-            Console.Write("Enter Mobile(01xxxxxxxxx): ");
-            string mobile = Console.ReadLine() ?? string.Empty;
-
-            Console.Write("Enter Email: ");
-            string email = Console.ReadLine() ?? string.Empty;
-
-            //creating new user
-            User user = new User
-            {   
-                UserID = _users.Count + 1,
-                Name = name,
-                Mobile = mobile,
-                Email = email
-            };
+            User user = (User)_inputManager.TakeInput();
 
             //adding user to the users list
             _users.Add(user);
