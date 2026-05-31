@@ -7,8 +7,8 @@ namespace BusTicketingAndBillingSystem.Implementations
 {
     public class BusInputManager : IInputManager
     {
-        private const int BusinessSeats = 20;
-        private const int EconomySeats = 40;
+        private const int BusinessSeats = 24;
+        private const int EconomySeats = 32;
         public object TakeInput()
         {
             Console.Write("Enter Coach Number: ");
@@ -18,8 +18,8 @@ namespace BusTicketingAndBillingSystem.Implementations
             while (true)
             {
                 Console.WriteLine("Enter a Bus Type:");
-                Console.WriteLine("E/e. Economy");
-                Console.WriteLine("B/b. Business");
+                Console.WriteLine("\tE/e. Economy");
+                Console.WriteLine("\tB/b. Business");
                 Console.Write("\t> ");
                 string tempBusType = Console.ReadLine() ?? string.Empty;
                 if(tempBusType.ToLower() == "e")
@@ -36,7 +36,7 @@ namespace BusTicketingAndBillingSystem.Implementations
                 }
             }
 
-            Bus bus = new Bus
+            Bus bus = new Bus()
             {
                 BusId = IdGenerator.GenerateBusId(),
                 CoachNumber = coachNumber,

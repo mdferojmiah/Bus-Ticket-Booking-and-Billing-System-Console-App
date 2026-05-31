@@ -18,7 +18,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             Console.Write("Enter Email: ");
             string email = Console.ReadLine() ?? string.Empty;
 
-            User user = new User
+            User user = new User()
             {
                 UserID = IdGenerator.GenerateUserId(),
                 Name = name,

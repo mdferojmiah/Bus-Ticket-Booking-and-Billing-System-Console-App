@@ -16,7 +16,6 @@ namespace BusTicketingAndBillingSystem.Implementations
         public void CreateUser()
         {
             User user = (User)_inputManager.TakeInput();
-
             //adding user to the users list
             _users.Add(user);
             Console.WriteLine("\nUser created successfully!");

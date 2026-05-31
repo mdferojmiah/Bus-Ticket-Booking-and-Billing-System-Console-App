@@ -9,14 +9,20 @@ namespace BusTicketingAndBillingSystem
     {
         public static void Main(string[] args)
         {
+            //user managemnet
             IInputManager userInputManager = new UserInputManager();
-            IInputManager busInputManager = new BusInputManager();
-
             IUserManager userManager = new UserManager(userInputManager);
+
+            //bus management
+            IInputManager busInputManager = new BusInputManager();
             IBusManager busManager = new BusManager(busInputManager);
-            
+
+            //schedule management
+            IInputManager scheduleInputManager = new ScheduleInputManager(busManager);
+            IScheduleManager scheduleManager = new ScheduleManager(scheduleInputManager);
+
             //initiating dashboard
-            IDashboardManager dashboard = new Dashboard(userManager, busManager);
+            IDashboardManager dashboard = new Dashboard(userManager, busManager, scheduleManager);
 
             //showing the dashboard
             dashboard.Show();

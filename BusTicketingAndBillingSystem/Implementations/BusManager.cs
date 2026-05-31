@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.Marshalling;
 using System.Transactions;
 using BusTicketingAndBillingSystem.Enums;
 using BusTicketingAndBillingSystem.Interfaces;
@@ -19,7 +20,6 @@ namespace BusTicketingAndBillingSystem.Implementations
         public void CreateBus()
         {
             Bus bus = (Bus)_inputManager.TakeInput();
-
             //adding to the list
             _buses.Add(bus);
             Console.WriteLine("\nBus created successfully!");
@@ -34,6 +34,17 @@ namespace BusTicketingAndBillingSystem.Implementations
             {
                 Console.WriteLine($"{bus.BusId}. {bus.CoachNumber} | {bus.BusType} | {bus.TotalSeats}");
             }
+        }
+
+        public Bus? GetBusById(int BusId)
+        {
+            Bus? bus = _buses.FirstOrDefault(x => x.BusId == BusId);
+            if (bus == null)
+            {
+                Console.WriteLine($"\nNo Bus found with Id: {BusId}");
+                return null;
+            }
+            return bus;
         }
     }
 }

@@ -7,11 +7,13 @@ namespace BusTicketingAndBillingSystem.Implementations
     {
         private readonly IUserManager _userManager;
         private readonly IBusManager _busManager;
+        private readonly IScheduleManager _scheduleManager;
 
-        public Dashboard(IUserManager userManager, IBusManager busManager)
+        public Dashboard(IUserManager userManager, IBusManager busManager, IScheduleManager scheduleManager)
         {
             _userManager = userManager;
             _busManager = busManager;
+            _scheduleManager = scheduleManager;
         }
 
         public void Show()
@@ -52,6 +54,24 @@ namespace BusTicketingAndBillingSystem.Implementations
                         _busManager.ShowAllBus();
                         BackToMainMenuOption();
                         break;
+                    case "5":
+                        //create schedule
+                        Console.Clear();
+                        _scheduleManager.CreateSchedule();
+                        BackToMainMenuOption();
+                        break;
+                    case "6":
+                        //show sll schedules
+                        Console.Clear();
+                        _scheduleManager.ShowAllSchedule();
+                        BackToMainMenuOption();
+                        break;
+                    case "7":
+                        //show schedule details
+                        Console.Clear();
+                        _scheduleManager.ShowScheduleDetails();
+                        BackToMainMenuOption();
+                        break;
                     default:
                         //invalid input
                         Console.Clear();
@@ -69,6 +89,9 @@ namespace BusTicketingAndBillingSystem.Implementations
             Console.WriteLine("2. Show All Users");
             Console.WriteLine("3. Create Bus");
             Console.WriteLine("4. Show All Buses");
+            Console.WriteLine("5. Create Schedule");
+            Console.WriteLine("6. Show All Schedules");
+            Console.WriteLine("7. Show Schedule Details");
             Console.WriteLine("0. Exit\n");
             Console.Write("> ");
         }
