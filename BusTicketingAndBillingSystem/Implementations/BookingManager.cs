@@ -9,24 +9,18 @@ namespace BusTicketingAndBillingSystem.Implementations
     public class BookingManager : IBookingManger
     {
         private readonly IInputManager _inputManager;
+        private readonly ITicketManager _ticketManager;
         
-        public BookingManager(IInputManager inputManager)
+        public BookingManager(IInputManager inputManager, TicketManager ticketManager)
         {
             _inputManager = inputManager;
+            _ticketManager = ticketManager;
         }
         public void BookTicket()
         {
             BookingInputHelper input = (BookingInputHelper)_inputManager.TakeInput();
             //making a ticket
-            Ticket ticket = new Ticket()
-            {
-                TicketId = IdGenerator.GenerateTicketId(),
-                User = input.User,
-                Schedule = input.Schedule,
-                SeatNo = input.SeatNo,
-                BookingTime = DateTime.UtcNow.ToString(),
-                Status = TicketStatus.Pending
-            };
+            Ticket ticket = _ticketManager.CreateTicket(input.User, input.Schedule, input.SeatNo);
 
             //making an invoice
 
