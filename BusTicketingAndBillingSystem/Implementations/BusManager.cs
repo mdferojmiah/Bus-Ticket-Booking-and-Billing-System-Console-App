@@ -42,7 +42,6 @@ namespace BusTicketingAndBillingSystem.Implementations
             if (bus == null)
             {
                 Console.WriteLine($"\nNo Bus found with Id: {BusId}");
-                return null;
             }
             return bus;
         }

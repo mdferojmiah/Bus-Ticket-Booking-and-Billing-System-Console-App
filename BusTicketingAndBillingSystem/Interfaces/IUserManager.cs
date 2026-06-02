@@ -6,5 +6,6 @@ namespace BusTicketingAndBillingSystem.Interfaces
     {
         void CreateUser();
         void ShowAllUser();
+        User? GetUserById(int userId);
     }
 }

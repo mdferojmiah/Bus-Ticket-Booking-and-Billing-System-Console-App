@@ -21,6 +21,16 @@ namespace BusTicketingAndBillingSystem.Implementations
             Console.WriteLine("\nUser created successfully!");
         }
 
+        public User? GetUserById(int userId)
+        {
+            User? user = _users.FirstOrDefault(x => x.UserID == userId);
+            if(user == null)
+            {
+                Console.WriteLine($"\nNo User found with Id: {userId}");
+            }
+            return user;
+        }
+
         public void ShowAllUser()
         {
             Console.WriteLine("All User List:");

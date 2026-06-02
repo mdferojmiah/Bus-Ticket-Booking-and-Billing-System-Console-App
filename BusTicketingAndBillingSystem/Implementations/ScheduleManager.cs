@@ -44,7 +44,6 @@ namespace BusTicketingAndBillingSystem.Implementations
             if(schedule == null)
             {
                 Console.WriteLine("\nNo Schedule found!!!\n");
-                return null;
             }
             return schedule;        
         }
