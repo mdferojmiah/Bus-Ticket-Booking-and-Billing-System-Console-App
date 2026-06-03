@@ -40,6 +40,7 @@ namespace BusTicketingAndBillingSystem.Implementations
                     case "0":
                         //exit
                         Console.Clear();
+                        PrintThankYouMessage();
                         return;
                     case "1":
                         //create user
@@ -153,6 +154,12 @@ namespace BusTicketingAndBillingSystem.Implementations
                     Console.WriteLine("Invalid command!");
                 }
             }
+        }
+
+        private void PrintThankYouMessage()
+        {
+            Console.WriteLine("Thank you for using this software.");
+            Console.WriteLine("©2026 Bus Ticketing & Billing System. All rights reserved.");
         }
     }
 }
