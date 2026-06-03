@@ -4,7 +4,7 @@ using BusTicketingAndBillingSystem.Utilities;
 
 namespace BusTicketingAndBillingSystem.Implementations
 {
-    public class ScheduleInputManager : IInputManager
+    public class ScheduleInputManager : IInputManager<Schedule>
     {
         private readonly IBusManager _busManager;
         
@@ -13,7 +13,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             _busManager = busManager;
         }
 
-        public object TakeInput()
+        public Schedule TakeInput()
         {
             Console.Write("Enter Departure City: ");
             string departureCity =  Console.ReadLine() ?? string.Empty;

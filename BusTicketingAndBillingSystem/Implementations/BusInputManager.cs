@@ -5,11 +5,11 @@ using BusTicketingAndBillingSystem.Utilities;
 
 namespace BusTicketingAndBillingSystem.Implementations
 {
-    public class BusInputManager : IInputManager
+    public class BusInputManager : IInputManager<Bus>
     {
         private const int BusinessSeats = 24;
         private const int EconomySeats = 32;
-        public object TakeInput()
+        public Bus TakeInput()
         {
             Console.Write("Enter Coach Number: ");
             string coachNumber = Console.ReadLine() ?? string.Empty;

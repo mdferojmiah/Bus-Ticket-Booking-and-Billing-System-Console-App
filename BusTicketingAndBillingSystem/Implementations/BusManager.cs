@@ -9,9 +9,9 @@ namespace BusTicketingAndBillingSystem.Implementations
     public class BusManager : IBusManager
     {
         private readonly List<Bus> _buses;
-        private readonly IInputManager _inputManager;
+        private readonly IInputManager<Bus> _inputManager;
 
-        public BusManager(IInputManager inputManager)
+        public BusManager(IInputManager<Bus> inputManager)
         {
             _buses = new List<Bus>();
             _inputManager = inputManager;
@@ -19,7 +19,7 @@ namespace BusTicketingAndBillingSystem.Implementations
 
         public void CreateBus()
         {
-            Bus bus = (Bus)_inputManager.TakeInput();
+            Bus bus = _inputManager.TakeInput();
             //adding to the list
             _buses.Add(bus);
             Console.WriteLine("\nBus created successfully!");

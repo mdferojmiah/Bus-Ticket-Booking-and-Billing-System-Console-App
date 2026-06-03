@@ -1,7 +1,7 @@
 namespace BusTicketingAndBillingSystem.Interfaces
 {
-    public interface IInputManager
+    public interface IInputManager<T>
     {
-        object TakeInput();
+        T TakeInput();
     }
 }

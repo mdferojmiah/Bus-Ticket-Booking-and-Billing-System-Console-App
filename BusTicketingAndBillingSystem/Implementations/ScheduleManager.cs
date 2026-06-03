@@ -10,9 +10,9 @@ namespace BusTicketingAndBillingSystem.Implementations
         private readonly List<Schedule> _schedules;
         private readonly char[] _economySeatsInARow = {'A', 'B', 'C', 'D'};
         private readonly char[] _businessSeatsInARow =  {'A', 'B', 'C'};
-        private readonly IInputManager _inputManager;
+        private readonly IInputManager<Schedule> _inputManager;
         
-        public ScheduleManager(IInputManager inputManager)
+        public ScheduleManager(IInputManager<Schedule> inputManager)
         {
             _schedules = new List<Schedule>();
             _inputManager = inputManager;
@@ -20,7 +20,7 @@ namespace BusTicketingAndBillingSystem.Implementations
 
         public void CreateSchedule()
         {
-            Schedule schedule = (Schedule)_inputManager.TakeInput();
+            Schedule schedule = _inputManager.TakeInput();
             //adding to the list
             _schedules.Add(schedule);
             Console.WriteLine("\nSchedule created successfully!");

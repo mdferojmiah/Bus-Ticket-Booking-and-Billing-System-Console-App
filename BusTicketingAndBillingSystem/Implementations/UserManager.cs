@@ -6,9 +6,9 @@ namespace BusTicketingAndBillingSystem.Implementations
     public class UserManager : IUserManager
     {
         private readonly List<User> _users;
-        private readonly IInputManager _inputManager;
+        private readonly IInputManager<User> _inputManager;
 
-        public UserManager(IInputManager inputManager)
+        public UserManager(IInputManager<User> inputManager)
         {
             _users = new List<User>();
             _inputManager = inputManager;

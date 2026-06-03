@@ -4,9 +4,9 @@ using BusTicketingAndBillingSystem.Utilities;
 
 namespace BusTicketingAndBillingSystem.Implementations
 {
-    public class UserInputManager : IInputManager
+    public class UserInputManager : IInputManager<User>
     {
-        public object TakeInput()
+        public User TakeInput()
         {
             //taking input
             Console.Write("Enter Name: ");

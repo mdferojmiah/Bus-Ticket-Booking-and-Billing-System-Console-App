@@ -2,6 +2,7 @@
 using BusTicketingAndBillingSystem.Implementations;
 using BusTicketingAndBillingSystem.Interfaces;
 using BusTicketingAndBillingSystem.Models;
+using BusTicketingAndBillingSystem.Models.HelperModels;
 
 namespace BusTicketingAndBillingSystem
 {
@@ -10,15 +11,15 @@ namespace BusTicketingAndBillingSystem
         public static void Main(string[] args)
         {
             //user managemnet
-            IInputManager userInputManager = new UserInputManager();
+            IInputManager<User> userInputManager = new UserInputManager();
             IUserManager userManager = new UserManager(userInputManager);
 
             //bus management
-            IInputManager busInputManager = new BusInputManager();
+            IInputManager<Bus> busInputManager = new BusInputManager();
             IBusManager busManager = new BusManager(busInputManager);
 
             //schedule management
-            IInputManager scheduleInputManager = new ScheduleInputManager(busManager);
+            IInputManager<Schedule> scheduleInputManager = new ScheduleInputManager(busManager);
             IScheduleManager scheduleManager = new ScheduleManager(scheduleInputManager);
 
             //ticket manager
@@ -28,7 +29,7 @@ namespace BusTicketingAndBillingSystem
             IInvoiceManager invoiceManager = new InvoiceManager();
 
             //ticket booking management
-            IInputManager bookingInputManager = new BookingInputManager(userManager, scheduleManager);
+            IInputManager<BookingInputHelper> bookingInputManager = new BookingInputManager(userManager, scheduleManager);
             IBookingManger bookingManger = new BookingManager(bookingInputManager, ticketManager, invoiceManager);
 
             //initiating dashboard

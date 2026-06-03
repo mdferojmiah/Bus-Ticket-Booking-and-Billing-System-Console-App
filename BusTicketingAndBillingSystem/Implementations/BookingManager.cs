@@ -8,11 +8,11 @@ namespace BusTicketingAndBillingSystem.Implementations
 {
     public class BookingManager : IBookingManger
     {
-        private readonly IInputManager _inputManager;
+        private readonly IInputManager<BookingInputHelper> _inputManager;
         private readonly ITicketManager _ticketManager;
         private readonly IInvoiceManager _invoiceManager;
         
-        public BookingManager(IInputManager inputManager, ITicketManager ticketManager, IInvoiceManager invoiceManager)
+        public BookingManager(IInputManager<BookingInputHelper> inputManager, ITicketManager ticketManager, IInvoiceManager invoiceManager)
         {
             _inputManager = inputManager;
             _ticketManager = ticketManager;
@@ -20,7 +20,7 @@ namespace BusTicketingAndBillingSystem.Implementations
         }
         public void BookTicket()
         {
-            BookingInputHelper input = (BookingInputHelper)_inputManager.TakeInput();
+            BookingInputHelper input = _inputManager.TakeInput();
 
             //making a ticket
             Ticket ticket = _ticketManager.CreateTicket(input.User, input.Schedule, input.SeatNo);

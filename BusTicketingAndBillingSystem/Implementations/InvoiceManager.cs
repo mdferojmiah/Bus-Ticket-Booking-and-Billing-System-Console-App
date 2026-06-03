@@ -21,6 +21,7 @@ namespace BusTicketingAndBillingSystem.Implementations
                 InvoiceId = IdGenerator.GenerateInvoiceId(),
                 Ticket = ticket,
                 Amount = schedule.TicketPrice,
+                InvoiceGenerationDate = DateTime.UtcNow.ToString(),
                 Status = PaymentStatus.Unpaid
             };
 
@@ -84,6 +85,8 @@ namespace BusTicketingAndBillingSystem.Implementations
                 ticket.Status = TicketStatus.Confirmed;
                 //invoice paid successfully
                 invoice.Status = PaymentStatus.Paid;
+                //adding ticket to the user ticket list
+                ticket.User.Tickets.Add(ticket);
 
                 Console.WriteLine("\nInvoice paid successfully!!!\n");
             }

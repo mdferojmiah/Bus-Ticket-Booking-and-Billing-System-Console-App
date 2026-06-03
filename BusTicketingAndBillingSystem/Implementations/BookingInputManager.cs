@@ -1,11 +1,12 @@
 using System.Security.Cryptography.X509Certificates;
+using BusTicketingAndBillingSystem.Enums;
 using BusTicketingAndBillingSystem.Interfaces;
 using BusTicketingAndBillingSystem.Models;
 using BusTicketingAndBillingSystem.Models.HelperModels;
 
 namespace BusTicketingAndBillingSystem.Implementations
 {
-    public class BookingInputManager : IInputManager
+    public class BookingInputManager : IInputManager<BookingInputHelper>
     {
         private readonly IUserManager _userManager;
         private readonly IScheduleManager _scheduleManager;
@@ -15,7 +16,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             _userManager = userManager;
             _scheduleManager = scheduleManager;
         }
-        public object TakeInput()
+        public BookingInputHelper TakeInput()
         {
             User? user;
             Schedule? schedule;
@@ -41,6 +42,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             {
                 Console.Write("Enter the Seat No(Ex: 5A, 3B, 1C): ");
                 seatNo = Console.ReadLine() ?? string.Empty;
+                
                 bool isBooked =  schedule.ReservedSeat.Contains(seatNo);
                 if (isBooked)
                 {
