@@ -6,5 +6,7 @@ namespace BusTicketingAndBillingSystem.Interfaces
     {
         Invoice CreateInvoice(Schedule schedule, Ticket ticket);
         Invoice? GetInvoiceById(int invoiceId);
+        List<Invoice> GetInvoicesByUserId(int userId);
+        void DisplayUsersInvoice();
     }
 }

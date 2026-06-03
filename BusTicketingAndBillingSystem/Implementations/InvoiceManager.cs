@@ -37,5 +37,28 @@ namespace BusTicketingAndBillingSystem.Implementations
             }
             return invoice;
         }
+
+        public List<Invoice> GetInvoicesByUserId(int userId)
+        {
+            return _invoices.Where(x => x.Ticket.User.UserID == userId).ToList();
+        }
+
+        public void DisplayUsersInvoice()
+        {
+            Console.Write("Enter User ID: ");
+            int userId = int.Parse(Console.ReadLine() ?? string.Empty);
+            List<Invoice> userInvoices = GetInvoicesByUserId(userId);
+            if(userInvoices == null)
+            {
+                Console.WriteLine($"\nNo invoices for user Id: {userId}\n");
+                return;
+            }
+
+            //printing invoices
+            foreach (Invoice invoice in userInvoices)
+            {
+                Console.WriteLine($"Invoice ID: {invoice.InvoiceId} | Ticket ID: {invoice.Ticket.TicketId} | Amount: {invoice.Amount} | Status: {invoice.Status}");
+            }
+        }
     }
 }

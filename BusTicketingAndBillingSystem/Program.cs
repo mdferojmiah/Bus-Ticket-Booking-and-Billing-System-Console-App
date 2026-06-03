@@ -21,14 +21,18 @@ namespace BusTicketingAndBillingSystem
             IInputManager scheduleInputManager = new ScheduleInputManager(busManager);
             IScheduleManager scheduleManager = new ScheduleManager(scheduleInputManager);
 
-            //ticket booking management
+            //ticket manager
             ITicketManager ticketManager = new TicketManager();
+
+            //invoice manager
             IInvoiceManager invoiceManager = new InvoiceManager();
+
+            //ticket booking management
             IInputManager bookingInputManager = new BookingInputManager(userManager, scheduleManager);
             IBookingManger bookingManger = new BookingManager(bookingInputManager, ticketManager, invoiceManager);
 
             //initiating dashboard
-            IDashboardManager dashboard = new Dashboard(userManager, busManager, scheduleManager, bookingManger);
+            IDashboardManager dashboard = new Dashboard(userManager, busManager, scheduleManager, invoiceManager, bookingManger);
 
             //showing the dashboard
             dashboard.Show();
