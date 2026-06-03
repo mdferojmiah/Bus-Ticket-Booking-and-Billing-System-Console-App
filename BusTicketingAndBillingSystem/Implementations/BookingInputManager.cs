@@ -10,11 +10,15 @@ namespace BusTicketingAndBillingSystem.Implementations
     {
         private readonly IUserManager _userManager;
         private readonly IScheduleManager _scheduleManager;
+        private readonly IBookingValidator _bookingValidator;
 
-        public BookingInputManager(IUserManager userManager, IScheduleManager scheduleManager)
+        public BookingInputManager(IUserManager userManager, 
+                                   IScheduleManager scheduleManager,
+                                   IBookingValidator bookingValidator)
         {
             _userManager = userManager;
             _scheduleManager = scheduleManager;
+            _bookingValidator = bookingValidator;
         }
         public BookingInputHelper TakeInput()
         {
@@ -26,16 +30,22 @@ namespace BusTicketingAndBillingSystem.Implementations
             {
                 Console.Write("Enter User ID: ");
                 int userId = int.Parse(Console.ReadLine() ?? string.Empty);
-                user = _userManager.GetUserById(userId);
-                if(user != null) break;
+
+                if(_bookingValidator.ValidateUser(userId, out user))
+                {
+                    break;
+                }
             }
 
             while (true)
             {
                 Console.Write("Enter Schedule ID: ");
                 int scheduleId = int.Parse(Console.ReadLine() ?? string.Empty);
-                schedule = _scheduleManager.GetScheduleById(scheduleId);
-                if(schedule != null) break;
+
+                if(_bookingValidator.ValidateSchedule(scheduleId, out schedule))
+                {
+                    break;
+                }
             }
             
             while (true)
@@ -43,12 +53,7 @@ namespace BusTicketingAndBillingSystem.Implementations
                 Console.Write("Enter the Seat No(Ex: 5A, 3B, 1C): ");
                 seatNo = Console.ReadLine() ?? string.Empty;
                 
-                bool isBooked =  schedule.ReservedSeat.Contains(seatNo);
-                if (isBooked)
-                {
-                    Console.WriteLine($"\n{seatNo} is already booked! Try differnt seats.\n");
-                }
-                else
+                if(_bookingValidator.ValidateSeat(seatNo, schedule!))
                 {
                     break;
                 }
@@ -56,8 +61,8 @@ namespace BusTicketingAndBillingSystem.Implementations
 
             BookingInputHelper bookingInput = new BookingInputHelper()
             {
-                User = user,
-                Schedule  = schedule,
+                User = user!,
+                Schedule  = schedule!,
                 SeatNo = seatNo
             };
 

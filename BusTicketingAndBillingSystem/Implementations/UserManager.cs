@@ -26,7 +26,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             User? user = _users.FirstOrDefault(x => x.UserID == userId);
             if(user == null)
             {
-                Console.WriteLine($"\nNo User found with Id: {userId}");
+                Console.WriteLine($"\nNo User found with Id: {userId}\n");
             }
             return user;
         }

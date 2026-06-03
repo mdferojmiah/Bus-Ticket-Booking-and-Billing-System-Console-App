@@ -29,7 +29,8 @@ namespace BusTicketingAndBillingSystem
             IInvoiceManager invoiceManager = new InvoiceManager();
 
             //ticket booking management
-            IInputManager<BookingInputHelper> bookingInputManager = new BookingInputManager(userManager, scheduleManager);
+            IBookingValidator bookingValidator = new BookingValidator(userManager, scheduleManager);
+            IInputManager<BookingInputHelper> bookingInputManager = new BookingInputManager(userManager, scheduleManager, bookingValidator);
             IBookingManger bookingManger = new BookingManager(bookingInputManager, ticketManager, invoiceManager);
 
             //initiating dashboard

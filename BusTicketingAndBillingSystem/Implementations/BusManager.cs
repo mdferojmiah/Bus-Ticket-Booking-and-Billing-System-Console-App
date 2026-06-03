@@ -41,7 +41,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             Bus? bus = _buses.FirstOrDefault(x => x.BusId == BusId);
             if (bus == null)
             {
-                Console.WriteLine($"\nNo Bus found with Id: {BusId}");
+                Console.WriteLine($"\nNo Bus found with Id: {BusId}\n");
             }
             return bus;
         }
