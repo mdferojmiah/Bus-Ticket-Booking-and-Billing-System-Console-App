@@ -11,7 +11,8 @@ namespace BusTicketingAndBillingSystem
         public static void Main(string[] args)
         {
             //user managemnet
-            IInputManager<User> userInputManager = new UserInputManager();
+            IUserValidator userValidator = new UserValidator();
+            IInputManager<User> userInputManager = new UserInputManager(userValidator);
             IUserManager userManager = new UserManager(userInputManager);
 
             //bus management

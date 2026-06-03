@@ -6,17 +6,38 @@ namespace BusTicketingAndBillingSystem.Implementations
 {
     public class UserInputManager : IInputManager<User>
     {
+        private readonly IUserValidator _userValidator;
+        public UserInputManager(IUserValidator userValidator)
+        {
+            _userValidator = userValidator;
+        }
         public User TakeInput()
         {
-            //taking input
-            Console.Write("Enter Name: ");
-            string name = Console.ReadLine() ?? string.Empty;
+            string name, mobile, email;
 
-            Console.Write("Enter Mobile(01xxxxxxxxx): ");
-            string mobile = Console.ReadLine() ?? string.Empty;
+            //taking name input
+            while (true)
+            {
+                Console.Write("Enter Name: ");
+                name = Console.ReadLine() ?? string.Empty;
+                if(_userValidator.ValidateName(name)) break;
+            }
 
-            Console.Write("Enter Email: ");
-            string email = Console.ReadLine() ?? string.Empty;
+            //taking mobile number input
+            while (true)
+            {
+                Console.Write("Enter Mobile(01xxxxxxxxx): ");
+                mobile = Console.ReadLine() ?? string.Empty;
+                if(_userValidator.ValidateMobile(mobile)) break;
+            }
+            
+            //taking email input
+            while (true)
+            {
+                Console.Write("Enter Email: ");
+                email = Console.ReadLine() ?? string.Empty;   
+                if(_userValidator.ValidateEmail(email)) break;
+            }
 
             User user = new User()
             {
