@@ -9,18 +9,21 @@ namespace BusTicketingAndBillingSystem.Implementations
         private readonly IBusManager _busManager;
         private readonly IScheduleManager _scheduleManager;
         private readonly IInvoiceManager _invoiceManager;
+        private readonly ITicketManager _ticketManager;
         private readonly IBookingManger _bookingManger;
 
         public Dashboard(IUserManager userManager,
                          IBusManager busManager, 
                          IScheduleManager scheduleManager, 
                          IInvoiceManager invoiceManager,
+                         ITicketManager ticketManager,
                          IBookingManger bookingManger)
         {
             _userManager = userManager;
             _busManager = busManager;
             _scheduleManager = scheduleManager;
             _invoiceManager = invoiceManager;
+            _ticketManager = ticketManager;
             _bookingManger = bookingManger;
         }
 
@@ -98,6 +101,12 @@ namespace BusTicketingAndBillingSystem.Implementations
                         _invoiceManager.ProcessInvoice();
                         BackToMainMenuOption();
                         break;
+                    case "11":
+                        //show tickets of a user
+                        Console.Clear();
+                        _ticketManager.DisplayUserTicket();
+                        BackToMainMenuOption();
+                        break;
                     default:
                         //invalid input
                         Console.Clear();
@@ -121,6 +130,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             Console.WriteLine("8. Book Ticket");
             Console.WriteLine("9. Show User Invoices");
             Console.WriteLine("10. Pay Invoice");
+            Console.WriteLine("11. Show Tickets of a User");
             Console.WriteLine("0. Exit\n");
             Console.Write("> ");
         }

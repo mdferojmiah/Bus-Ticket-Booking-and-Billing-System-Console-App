@@ -32,7 +32,7 @@ namespace BusTicketingAndBillingSystem
             IBookingManger bookingManger = new BookingManager(bookingInputManager, ticketManager, invoiceManager);
 
             //initiating dashboard
-            IDashboardManager dashboard = new Dashboard(userManager, busManager, scheduleManager, invoiceManager, bookingManger);
+            IDashboardManager dashboard = new Dashboard(userManager, busManager, scheduleManager, invoiceManager, ticketManager, bookingManger);
 
             //showing the dashboard
             dashboard.Show();

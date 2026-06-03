@@ -43,5 +43,24 @@ namespace BusTicketingAndBillingSystem.Implementations
         {
             return _tickets.Where(x => x.User.UserID == userId).ToList();
         }
+
+        public void DisplayUserTicket()
+        {
+            Console.Write("Enter User ID: ");
+            int userId = int.Parse(Console.ReadLine() ?? string.Empty);
+            List<Ticket> allTickets = GetTicketsByUserId(userId);
+            if(allTickets != null)
+            {
+                List<Ticket> confirmedTickets = allTickets.Where(x => x.Status == TicketStatus.Confirmed).ToList();
+                Console.WriteLine("Tickets:");
+                Console.WriteLine("-------");
+                foreach(Ticket ticket in confirmedTickets)
+                {
+                    Console.WriteLine($"Ticket ID: {ticket.TicketId} | Coach: {ticket.Schedule.Bus.CoachNumber} | Date: {ticket.Schedule.DepartureDate} {ticket.Schedule.DepartureTime} | Seat: {ticket.SeatNo}");
+                }
+                return;
+            }
+            Console.WriteLine("\nDo not have nay paid tickets!!!\n");
+        }
     }
 }

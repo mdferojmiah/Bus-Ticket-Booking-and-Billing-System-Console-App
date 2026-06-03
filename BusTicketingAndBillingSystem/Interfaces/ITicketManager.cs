@@ -6,5 +6,7 @@ namespace BusTicketingAndBillingSystem.Interfaces
     {
         Ticket CreateTicket(User user, Schedule schedule, string seatNo);
         Ticket? GetTicketById(int ticketId);
+        List<Ticket> GetTicketsByUserId(int userId);
+        void DisplayUserTicket();
     }
 }
