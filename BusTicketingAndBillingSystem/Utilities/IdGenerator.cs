@@ -6,6 +6,7 @@ namespace BusTicketingAndBillingSystem.Utilities
         private static int _busId;
         private static int _ScheduleId;
         private static int _ticketId;
+        private static int _invoiceId;
 
         public static int GenerateUserId()
         {
@@ -25,6 +26,11 @@ namespace BusTicketingAndBillingSystem.Utilities
         public static int GenerateTicketId()
         {
             return ++_ticketId;
+        }
+
+        public static int GenerateInvoiceId()
+        {
+            return ++_invoiceId;
         }
     }
 }
