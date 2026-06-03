@@ -60,5 +60,33 @@ namespace BusTicketingAndBillingSystem.Implementations
                 Console.WriteLine($"Invoice ID: {invoice.InvoiceId} | Ticket ID: {invoice.Ticket.TicketId} | Amount: {invoice.Amount} | Status: {invoice.Status}");
             }
         }
+
+        public void ProcessInvoice()
+        {
+            Console.Write("Enter Invoice ID to process: ");
+            int invoiceId = int.Parse(Console.ReadLine() ?? string.Empty);
+
+            Invoice? invoice = GetInvoiceById(invoiceId);
+
+            if(invoice != null)
+            {
+                Ticket ticket = invoice.Ticket;
+                Schedule schedule = ticket.Schedule;
+
+                if (schedule.ReservedSeat.Contains(ticket.SeatNo))
+                {
+                    Console.WriteLine("Seat is already booked!");
+                    return;
+                }
+                //reserving the seat
+                schedule.ReservedSeat.Add(ticket.SeatNo);
+                //confirming the ticket
+                ticket.Status = TicketStatus.Confirmed;
+                //invoice paid successfully
+                invoice.Status = PaymentStatus.Paid;
+
+                Console.WriteLine("\nInvoice paid successfully!!!\n");
+            }
+        }
     }
 }

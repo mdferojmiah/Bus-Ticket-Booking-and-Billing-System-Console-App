@@ -92,6 +92,12 @@ namespace BusTicketingAndBillingSystem.Implementations
                         _invoiceManager.DisplayUsersInvoice();
                         BackToMainMenuOption();
                         break;
+                    case "10":
+                        //pay invoice
+                        Console.Clear();
+                        _invoiceManager.ProcessInvoice();
+                        BackToMainMenuOption();
+                        break;
                     default:
                         //invalid input
                         Console.Clear();
@@ -114,6 +120,7 @@ namespace BusTicketingAndBillingSystem.Implementations
             Console.WriteLine("7. Show Schedule Details");
             Console.WriteLine("8. Book Ticket");
             Console.WriteLine("9. Show User Invoices");
+            Console.WriteLine("10. Pay Invoice");
             Console.WriteLine("0. Exit\n");
             Console.Write("> ");
         }
